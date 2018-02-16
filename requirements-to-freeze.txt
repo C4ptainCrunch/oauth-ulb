@@ -1,2 +1,2 @@
 Django>=2.0,<2.1
-libulb
+git+https://github.com/C4ptainCrunch/libnetid.git
