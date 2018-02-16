@@ -1,6 +1,6 @@
 from django.db import models
-import libnetid.django.models.AbstractNetidUser
+from libnetid.django.models import AbstractNetidUser
 
 
-class User(libnetid.django.models.AbstractNetidUser):
-    full_xml = models.TextField()
+class User(AbstractNetidUser):
+    pass

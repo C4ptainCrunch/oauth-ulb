@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'libnetid.django',
+
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -125,4 +127,4 @@ LIBNETID = {
     'store_inscriptions': True,
 }
 
-AUTH_USER_MODEL = 'users.models.User'
+AUTH_USER_MODEL = 'users.User'
