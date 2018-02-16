@@ -125,7 +125,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LIBNETID = {
-    'store_inscriptions': True,
+    'store_inscriptions': False,
 }
 
 AUTH_USER_MODEL = 'users.User'

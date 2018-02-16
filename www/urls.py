@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path
 
 import www.views
+import users.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(r'', www.views.home, name='home'),
+    path(r'ulb_auth', users.views.ulb_auth)
 ]
