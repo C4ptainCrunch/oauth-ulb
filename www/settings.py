@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'libnetid.django',
 
+    'www',
     'users',
 ]
 
@@ -128,3 +129,10 @@ LIBNETID = {
 }
 
 AUTH_USER_MODEL = 'users.User'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'libnetid.django.backends.NetidBackend',
+]
+
+AUTH_PASSWORD_VALIDATORS = []
