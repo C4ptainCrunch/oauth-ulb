@@ -1,7 +1,8 @@
-from django.shortcuts import render
-import random
+from django.shortcuts import render, redirect
 
 
 def home(request):
-    img = random.choice(["gazon", "r42", 'resto', 'panneau'])
-    return render(request, 'home.html', {'image': img})
+    if request.user.is_authenticated:
+        return redirect('me')
+    else:
+        return render(request, 'home.html')

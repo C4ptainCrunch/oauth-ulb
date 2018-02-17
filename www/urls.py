@@ -17,11 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 import www.views
-import users.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(r'', www.views.home, name='home'),
-    path(r'ulb_auth', users.views.ulb_auth),
-    path(r'o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    path('', www.views.home, name='home'),
+    path('accounts/', include('users.urls')),
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 ]

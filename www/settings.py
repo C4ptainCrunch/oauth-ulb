@@ -141,3 +141,6 @@ AUTHENTICATION_BACKENDS = [
 AUTH_PASSWORD_VALIDATORS = []
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+BASE_URL = "https://partou.se" # No trailing slash
