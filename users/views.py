@@ -6,6 +6,8 @@ from libnetid.http import login_url
 import random
 from django.urls import reverse
 from django.conf import settings
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from urllib.parse import unquote, quote
 
 
 def return_from_ulb(request):
@@ -15,7 +17,12 @@ def return_from_ulb(request):
         user = authenticate(sid=sid, uid=uid)
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(request.GET.get('next', reverse("me")))
+            next_url = request.GET.get('next')
+            if next_url:
+                next_url = urlsafe_base64_decode(next_url).decode()
+            else:
+                next_url = reverse("me")
+            return HttpResponseRedirect(next_url)
 
     return HttpResponseForbidden("Bad")
 
@@ -24,7 +31,7 @@ def login_view(request):
     return_url = "{base}{path}?next={next}".format(
         base=settings.BASE_URL,
         path=reverse("return_from_ulb"),
-        next=request.GET.get('next', reverse("me"))
+        next=urlsafe_base64_encode(request.GET.get('next', reverse("me")).encode()).decode()
     )
     url = login_url(return_url)
     return HttpResponseRedirect(url.url)
