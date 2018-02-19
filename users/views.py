@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponseRedirect, HttpResponseForbidden, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from libnetid.http import login_url
@@ -7,7 +7,6 @@ import random
 from django.urls import reverse
 from django.conf import settings
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from urllib.parse import unquote, quote
 
 
 def return_from_ulb(request):
@@ -46,3 +45,8 @@ def logout_view(request):
 def me(request):
     img = random.choice(["gazon", "r42", 'resto', 'panneau'])
     return render(request, 'me.html', {'image': img})
+
+
+@login_required
+def me_json(request):
+    return JsonResponse(request.user.as_dict())

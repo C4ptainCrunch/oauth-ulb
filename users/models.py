@@ -1,6 +1,11 @@
-from django.db import models
 from libnetid.django.models import AbstractNetidUser
 
 
 class User(AbstractNetidUser):
-    pass
+    def as_dict(self):
+        return {
+            'netid': self.netid,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'email': self.email,
+        }
