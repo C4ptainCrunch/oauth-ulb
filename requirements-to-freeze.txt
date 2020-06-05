@@ -1,4 +1,4 @@
-Django>=2.0,<2.1
+Django>=2.0,<2.3
 git+https://github.com/C4ptainCrunch/libnetid.git
 django-oauth-toolkit
 django-cors-middleware
